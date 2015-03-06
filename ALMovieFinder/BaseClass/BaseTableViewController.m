@@ -10,4 +10,14 @@
 
 @implementation BaseTableViewController
 
+- (void)reloadData {
+    //do something...
+    [self.tableView reloadData];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self reloadData];
+}
+
 @end

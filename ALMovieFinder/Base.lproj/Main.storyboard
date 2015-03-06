@@ -43,7 +43,16 @@
                             <outlet property="delegate" destination="hzv-5w-IQ0" id="tak-xf-zqI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Movie Finder" id="AUG-px-zIF"/>
+                    <navigationItem key="navigationItem" title="Movie Finder" id="AUG-px-zIF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="p3D-Be-fPX">
+                            <connections>
+                                <action selector="reloadButtonAction:" destination="hzv-5w-IQ0" id="K2S-xL-c9M"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="reloadButton" destination="p3D-Be-fPX" id="XcB-EA-DBD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mx-yl-MNP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
