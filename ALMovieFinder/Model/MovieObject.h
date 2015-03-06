@@ -13,6 +13,7 @@
 #import "BackdropEntity.h"
 #import "PosterEntity.h"
 #import "Available_languagesEntity.h"
+#import <AFNetworking.h>
 
 @interface MovieObject : NSObject<NSCoding>
 
@@ -31,7 +32,9 @@
 @property (nonatomic,strong) PosterEntity *poster;
 @property (nonatomic,strong) NSMutableArray *available_languages;
  
-
++ (AFHTTPRequestOperation *)fetchMoviesByQueryString:(NSString *)queryString
+                                             success:(void (^)(AFHTTPRequestOperation *operation, NSArray *movieObjects))success
+                                             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 -(id)initWithJson:(NSDictionary *)json;
 
