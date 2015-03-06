@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6053424A136A17400E6999B0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B8EE264CB35DD5D8E4A2E0 /* libPods.a */; };
+		9717ABED1AA9E08400E089D3 /* MovieListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9717ABEC1AA9E08400E089D3 /* MovieListViewCell.m */; };
 		9772BE6D1AA99D3000AD9204 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BE6C1AA99D3000AD9204 /* main.m */; };
 		9772BE701AA99D3000AD9204 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BE6F1AA99D3000AD9204 /* AppDelegate.m */; };
 		9772BE791AA99D3000AD9204 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9772BE771AA99D3000AD9204 /* Main.storyboard */; };
@@ -26,7 +27,6 @@
 		9772BEB71AA9A39000AD9204 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BEB61AA9A39000AD9204 /* BaseTableViewController.m */; };
 		9772BEBA1AA9A3AD00AD9204 /* MovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BEB91AA9A3AD00AD9204 /* MovieListViewController.m */; };
 		9772BEBD1AA9A4C000AD9204 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BEBC1AA9A4C000AD9204 /* BaseTableViewCell.m */; };
-		9772BEC31AA9B50100AD9204 /* MovieListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BEC21AA9B50100AD9204 /* MovieListViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +42,8 @@
 /* Begin PBXFileReference section */
 		42B8EE264CB35DD5D8E4A2E0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ABF36E1337B6DF32B828472 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		9717ABEB1AA9E08400E089D3 /* MovieListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieListViewCell.h; sourceTree = "<group>"; };
+		9717ABEC1AA9E08400E089D3 /* MovieListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieListViewCell.m; sourceTree = "<group>"; };
 		9772BE671AA99D3000AD9204 /* ALMovieFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALMovieFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9772BE6B1AA99D3000AD9204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9772BE6C1AA99D3000AD9204 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -77,8 +79,6 @@
 		9772BEB91AA9A3AD00AD9204 /* MovieListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieListViewController.m; sourceTree = "<group>"; };
 		9772BEBB1AA9A4C000AD9204 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		9772BEBC1AA9A4C000AD9204 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
-		9772BEC11AA9B50100AD9204 /* MovieListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieListViewCell.h; sourceTree = "<group>"; };
-		9772BEC21AA9B50100AD9204 /* MovieListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieListViewCell.m; sourceTree = "<group>"; };
 		FEBCF5FC5FEC3086B043E2B3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,9 +174,10 @@
 		9772BE931AA99DAE00AD9204 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				9772BEBE1AA9B4C200AD9204 /* Xib */,
 				9772BEB81AA9A3AD00AD9204 /* MovieListViewController.h */,
 				9772BEB91AA9A3AD00AD9204 /* MovieListViewController.m */,
+				9717ABEB1AA9E08400E089D3 /* MovieListViewCell.h */,
+				9717ABEC1AA9E08400E089D3 /* MovieListViewCell.m */,
 				9772BE961AA99DAE00AD9204 /* SecondViewController.h */,
 				9772BE971AA99DAE00AD9204 /* SecondViewController.m */,
 			);
@@ -215,15 +216,6 @@
 				9772BEBC1AA9A4C000AD9204 /* BaseTableViewCell.m */,
 			);
 			path = BaseClass;
-			sourceTree = "<group>";
-		};
-		9772BEBE1AA9B4C200AD9204 /* Xib */ = {
-			isa = PBXGroup;
-			children = (
-				9772BEC11AA9B50100AD9204 /* MovieListViewCell.h */,
-				9772BEC21AA9B50100AD9204 /* MovieListViewCell.m */,
-			);
-			path = Xib;
 			sourceTree = "<group>";
 		};
 		FF431A3AA08A5B6328908499 /* Pods */ = {
@@ -375,7 +367,6 @@
 				9772BE991AA99DAE00AD9204 /* SecondViewController.m in Sources */,
 				9772BEAB1AA9A1CE00AD9204 /* NetflixEntity.m in Sources */,
 				9772BEB21AA9A1D200AD9204 /* MovieObject.m in Sources */,
-				9772BEC31AA9B50100AD9204 /* MovieListViewCell.m in Sources */,
 				9772BE701AA99D3000AD9204 /* AppDelegate.m in Sources */,
 				9772BEAC1AA9A1CE00AD9204 /* PosterEntity.m in Sources */,
 				9772BEAF1AA9A1CE00AD9204 /* UrlsEntity.m in Sources */,
@@ -384,6 +375,7 @@
 				9772BEAA1AA9A1CE00AD9204 /* BackdropEntity.m in Sources */,
 				9772BEB71AA9A39000AD9204 /* BaseTableViewController.m in Sources */,
 				9772BEBD1AA9A4C000AD9204 /* BaseTableViewCell.m in Sources */,
+				9717ABED1AA9E08400E089D3 /* MovieListViewCell.m in Sources */,
 				9772BE6D1AA99D3000AD9204 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
