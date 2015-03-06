@@ -18,8 +18,7 @@ static NSString * const ALMovieFinderErrorDomain = @"ALMovieFinderErrorDomain";
 @implementation MovieObject
 
 + (NSString *)baseURL {
-//    return APITweakValue(@"ServerURL", @"http://api-dev.eztable.com/v2/");
-    return @"http://api.movies.io";
+    return APITweakValue(@"baseURL", @"http://api.movies.io");
 }
 
 + (AFHTTPRequestOperation *)fetchMoviesByQueryString:(NSString *)queryString
@@ -33,7 +32,7 @@ static NSString * const ALMovieFinderErrorDomain = @"ALMovieFinderErrorDomain";
             return operation;
         }
     }
-    BOOL useStub = YES;
+    BOOL useStub = DebugTweakValue(@"Stub Response", NO);
     
     if (useStub) {
         dispatchAfter(1.0, ^{
@@ -43,8 +42,8 @@ static NSString * const ALMovieFinderErrorDomain = @"ALMovieFinderErrorDomain";
             }
         });
     }else {
-        NSArray *paths = @[@"movies", @"search"];
-        NSString *URLString = [[MovieObject baseURL] stringByAppendingPathComponent:[paths componentsJoinedByString:@"/"]];
+        NSString *path = APITweakValue(@"Path", @"movies/search");
+        NSString *URLString = [[MovieObject baseURL] stringByAppendingPathComponent:path];
         id parameters = @{@"q": SafeStr(queryString)};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {

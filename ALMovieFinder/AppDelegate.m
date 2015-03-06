@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import <Tweaks/FBTweakShakeWindow.h>
+#import <SDWebImage/SDImageCache.h>
 
 @interface AppDelegate ()
 
@@ -14,9 +16,24 @@
 
 @implementation AppDelegate
 
+- (UIWindow *)window
+{
+    if (!_window) {
+        _window = [[FBTweakShakeWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    }
+    
+    return _window;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    FBTweakAction(@"Preferences", @"Debug", @"ClearSDImageCache", ^{
+        [[SDImageCache sharedImageCache] clearMemory];
+        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+            NSString *str = @"SDImageCache clear completed!";
+            NSLog(@"LOG:  str: %@",str);
+        }];
+    });
     return YES;
 }
 
