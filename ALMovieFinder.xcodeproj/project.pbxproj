@@ -26,6 +26,7 @@
 		9772BEB71AA9A39000AD9204 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BEB61AA9A39000AD9204 /* BaseTableViewController.m */; };
 		9772BEBA1AA9A3AD00AD9204 /* MovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BEB91AA9A3AD00AD9204 /* MovieListViewController.m */; };
 		9772BEBD1AA9A4C000AD9204 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BEBC1AA9A4C000AD9204 /* BaseTableViewCell.m */; };
+		9772BEC31AA9B50100AD9204 /* MovieListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BEC21AA9B50100AD9204 /* MovieListViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		9772BEB91AA9A3AD00AD9204 /* MovieListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieListViewController.m; sourceTree = "<group>"; };
 		9772BEBB1AA9A4C000AD9204 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		9772BEBC1AA9A4C000AD9204 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		9772BEC11AA9B50100AD9204 /* MovieListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieListViewCell.h; sourceTree = "<group>"; };
+		9772BEC21AA9B50100AD9204 /* MovieListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieListViewCell.m; sourceTree = "<group>"; };
 		FEBCF5FC5FEC3086B043E2B3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +174,7 @@
 		9772BE931AA99DAE00AD9204 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9772BEBE1AA9B4C200AD9204 /* Xib */,
 				9772BEB81AA9A3AD00AD9204 /* MovieListViewController.h */,
 				9772BEB91AA9A3AD00AD9204 /* MovieListViewController.m */,
 				9772BE961AA99DAE00AD9204 /* SecondViewController.h */,
@@ -211,6 +215,15 @@
 				9772BEBC1AA9A4C000AD9204 /* BaseTableViewCell.m */,
 			);
 			path = BaseClass;
+			sourceTree = "<group>";
+		};
+		9772BEBE1AA9B4C200AD9204 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				9772BEC11AA9B50100AD9204 /* MovieListViewCell.h */,
+				9772BEC21AA9B50100AD9204 /* MovieListViewCell.m */,
+			);
+			path = Xib;
 			sourceTree = "<group>";
 		};
 		FF431A3AA08A5B6328908499 /* Pods */ = {
@@ -362,6 +375,7 @@
 				9772BE991AA99DAE00AD9204 /* SecondViewController.m in Sources */,
 				9772BEAB1AA9A1CE00AD9204 /* NetflixEntity.m in Sources */,
 				9772BEB21AA9A1D200AD9204 /* MovieObject.m in Sources */,
+				9772BEC31AA9B50100AD9204 /* MovieListViewCell.m in Sources */,
 				9772BE701AA99D3000AD9204 /* AppDelegate.m in Sources */,
 				9772BEAC1AA9A1CE00AD9204 /* PosterEntity.m in Sources */,
 				9772BEAF1AA9A1CE00AD9204 /* UrlsEntity.m in Sources */,

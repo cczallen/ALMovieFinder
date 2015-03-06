@@ -10,6 +10,7 @@
 #import "MovieObject.h"
 #import <SVProgressHUD.h>
 #import <ALUtilities.h>
+#import "MovieListViewCell.h"
 
 @interface MovieListViewController ()
 
@@ -44,6 +45,13 @@
     }];
 }
 
+
+#pragma mark - View Cycle
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+
+
 #pragma mark - Custom Setters
 - (void)setCurrentRequestOperation:(AFHTTPRequestOperation *)currentRequestOperation {
     if (![_currentRequestOperation isEqual:currentRequestOperation]) {
@@ -58,12 +66,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[BaseTableViewCell cellReuseIdentifier]];
+    MovieListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MovieListViewCell cellReuseIdentifier]];
     
     NSInteger myRow = indexPath.row;
     MovieObject *movie = self.movies[myRow];
-    NSString *text = [NSString stringWithFormat:@"%li. %@", (myRow+1), SafeStr(movie)];
-    cell.textLabel.text = text;
+//    NSString *text = [NSString stringWithFormat:@"%li. %@", (myRow+1), SafeStr(movie)];
+//    cell.textLabel.text = text;
+    [cell configureCellWithMovieObject:movie];
     
     return cell;
 }
