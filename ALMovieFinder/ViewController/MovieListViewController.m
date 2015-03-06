@@ -20,6 +20,7 @@ static NSString * const tweakIDForQueryID = @"Query String";
 @property (nonatomic, strong) AFHTTPRequestOperation *currentRequestOperation;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, weak) MovieObject *currentMovieObject;
+@property (copy, nonatomic) NSString *currentSearchText;
 
 - (void)reloadDataByQueryString:(NSString *)queryString;
 
@@ -34,8 +35,13 @@ static NSString * const tweakIDForQueryID = @"Query String";
 
 //override
 - (void)reloadData {
-    NSString *queryString = self.searchBar.text;
-    [self reloadDataByQueryString:queryString];
+    [self reloadDataByQueryString:self.currentSearchText];
+    
+    FBTweakStore *store = [FBTweakStore sharedInstance];
+    FBTweakCategory *category = [store tweakCategoryWithName:@"Preferences"];
+    FBTweakCollection *collection = [category tweakCollectionWithName:@"API"];
+    FBTweak *tweak = [collection tweakWithIdentifier:tweakIDForQueryID];
+    tweak.currentValue = self.currentSearchText;
 }
 
 - (void)reloadDataByQueryString:(NSString *)queryString {
@@ -88,8 +94,9 @@ static NSString * const tweakIDForQueryID = @"Query String";
     FBTweakCollection *collection = [category tweakCollectionWithName:@"API"];
     [collection addTweak:tweak];
     
-    NSString *queryString = tweak.currentValue;//APITweakValue(@"Query String", @"hobbit");
+    NSString *queryString = (tweak.currentValue)? tweak.currentValue : tweak.defaultValue;
     self.searchBar.text = queryString;
+    self.currentSearchText = queryString;
 }
 
 
@@ -101,6 +108,7 @@ static NSString * const tweakIDForQueryID = @"Query String";
     self.reloadButton.enabled = (self.currentRequestOperation == nil);
 }
 
+
 #pragma mark - UITableView DataSource & Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.movies.count;
@@ -111,13 +119,13 @@ static NSString * const tweakIDForQueryID = @"Query String";
     
     NSInteger myRow = indexPath.row;
     MovieObject *movieObject = self.movies[myRow];
-    [cell configureCellWithMovieObject:movieObject];    
+    [cell configureCellWithMovieObject:movieObject andSearchText:self.currentSearchText];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     MovieListViewCell *cell = (MovieListViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
@@ -127,11 +135,18 @@ static NSString * const tweakIDForQueryID = @"Query String";
     NSURL *url = [NSURL URLWithString:posterURLString];
     if (url) {
         self.currentMovieObject = movieObject;
-        [cell.posterImageView setImageWithURL:url placeholderImage:nil options:SDWebImageCacheMemoryOnly completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            if ([self.currentMovieObject isEqual:movieObject]) {
-                [EXPhotoViewer showImageFrom:cell.posterImageView];
-            }
-        } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [UIView animateWithDuration:0.4 animations:^{
+            cell.posterImageView.alpha = 0.2;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.4 animations:^{
+                cell.posterImageView.alpha = 1;
+            }];
+            [cell.posterImageView setImageWithURL:url placeholderImage:nil options:SDWebImageCacheMemoryOnly completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if ([self.currentMovieObject isEqual:movieObject]) {
+                    [EXPhotoViewer showImageFrom:cell.posterImageView];
+                }
+            } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        }];
     }
 
 }
@@ -147,14 +162,9 @@ static NSString * const tweakIDForQueryID = @"Query String";
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSString *queryString = searchBar.text;
     if (queryString) {
+        self.currentSearchText = queryString;
         [searchBar endEditing:YES];
-        [self reloadDataByQueryString:queryString];
-        
-        FBTweakStore *store = [FBTweakStore sharedInstance];
-        FBTweakCategory *category = [store tweakCategoryWithName:@"Preferences"];
-        FBTweakCollection *collection = [category tweakCollectionWithName:@"API"];
-        FBTweak *tweak = [collection tweakWithIdentifier:tweakIDForQueryID];
-        tweak.currentValue = queryString;
+        [self reloadData];
     }
 }
 

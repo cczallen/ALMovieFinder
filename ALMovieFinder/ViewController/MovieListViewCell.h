@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 
 - (void)configureCellWithMovieObject:(MovieObject *)movieObject;
+- (void)configureCellWithMovieObject:(MovieObject *)movieObject andSearchText:(NSString *)searchText;
 
 @end

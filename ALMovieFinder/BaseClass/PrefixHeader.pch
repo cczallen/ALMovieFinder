@@ -20,6 +20,6 @@
 #import <Tweaks/FBTweakInline.h>
 #define DebugTweakValue(name_, ...) FBTweakValue(@"Preferences", @"Debug", name_, __VA_ARGS__)
 #define APITweakValue(name_, ...) FBTweakValue(@"Preferences", @"API", name_, __VA_ARGS__)
-
+#define UITweakValue(name_, ...) FBTweakValue(@"Preferences", @"UI", name_, __VA_ARGS__)
 
 #endif

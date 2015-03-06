@@ -12,7 +12,6 @@
 		9772BE6D1AA99D3000AD9204 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BE6C1AA99D3000AD9204 /* main.m */; };
 		9772BE701AA99D3000AD9204 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BE6F1AA99D3000AD9204 /* AppDelegate.m */; };
 		9772BE791AA99D3000AD9204 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9772BE771AA99D3000AD9204 /* Main.storyboard */; };
-		9772BE7B1AA99D3000AD9204 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9772BE7A1AA99D3000AD9204 /* Images.xcassets */; };
 		9772BE7E1AA99D3000AD9204 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9772BE7C1AA99D3000AD9204 /* LaunchScreen.xib */; };
 		9772BE8A1AA99D3000AD9204 /* ALMovieFinderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BE891AA99D3000AD9204 /* ALMovieFinderTests.m */; };
 		9772BE991AA99DAE00AD9204 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BE971AA99DAE00AD9204 /* SecondViewController.m */; };
@@ -51,7 +50,6 @@
 		9772BE6E1AA99D3000AD9204 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9772BE6F1AA99D3000AD9204 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9772BE781AA99D3000AD9204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9772BE7A1AA99D3000AD9204 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9772BE7D1AA99D3000AD9204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9772BE831AA99D3000AD9204 /* ALMovieFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ALMovieFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9772BE881AA99D3000AD9204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 				9772BE6E1AA99D3000AD9204 /* AppDelegate.h */,
 				9772BE6F1AA99D3000AD9204 /* AppDelegate.m */,
 				9772BE771AA99D3000AD9204 /* Main.storyboard */,
-				9772BE7A1AA99D3000AD9204 /* Images.xcassets */,
 				9772BE7C1AA99D3000AD9204 /* LaunchScreen.xib */,
 				9772BEB31AA9A2CF00AD9204 /* BaseClass */,
 				9772BE9A1AA99DB300AD9204 /* Model */,
@@ -313,7 +310,6 @@
 			files = (
 				9772BE791AA99D3000AD9204 /* Main.storyboard in Resources */,
 				9772BE7E1AA99D3000AD9204 /* LaunchScreen.xib in Resources */,
-				9772BE7B1AA99D3000AD9204 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
