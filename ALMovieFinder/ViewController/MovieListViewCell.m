@@ -10,16 +10,6 @@
 #import "MovieObject.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
-@interface MovieListViewCell ()
-
-@property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
-
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *yearLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
-
-@end
-
 @implementation MovieListViewCell
 
 - (void)configureCellWithMovieObject:(MovieObject *)movieObject {
