@@ -8,8 +8,6 @@
 
 #import "MovieListViewController.h"
 #import "MovieObject.h"
-#import <SVProgressHUD.h>
-#import <ALUtilities.h>
 #import "MovieListViewCell.h"
 
 @interface MovieListViewController ()
@@ -34,11 +32,17 @@
     [SVProgressHUD showWithStatus:@"Loading..."];
     self.currentRequestOperation =
     [MovieObject fetchMoviesByQueryString:@"hobbit" success:^(AFHTTPRequestOperation *operation, NSArray *movieObjects) {
-        self.movies = movieObjects;
+        //Clear
+        self.movies = nil;
         [self.tableView reloadData];
-        // TODO: Empty Page?
-        [SVProgressHUD dismiss];
-        finalBlock();
+        //Set
+        self.movies = movieObjects;
+        dispatchAfter(0.3, ^{
+            [self.tableView reloadDataWithRowAnimation:(UITableViewRowAnimationFade)];
+            // TODO: Empty Page?
+            [SVProgressHUD dismiss];
+            finalBlock();
+        });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         finalBlock();
@@ -49,6 +53,8 @@
 #pragma mark - View Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.contentInsetTop = 8;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 
@@ -69,10 +75,8 @@
     MovieListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MovieListViewCell cellReuseIdentifier]];
     
     NSInteger myRow = indexPath.row;
-    MovieObject *movie = self.movies[myRow];
-//    NSString *text = [NSString stringWithFormat:@"%li. %@", (myRow+1), SafeStr(movie)];
-//    cell.textLabel.text = text;
-    [cell configureCellWithMovieObject:movie];
+    MovieObject *movieObject = self.movies[myRow];
+    [cell configureCellWithMovieObject:movieObject];    
     
     return cell;
 }

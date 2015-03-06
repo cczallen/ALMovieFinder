@@ -44,6 +44,7 @@
 		8ABF36E1337B6DF32B828472 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9717ABEB1AA9E08400E089D3 /* MovieListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieListViewCell.h; sourceTree = "<group>"; };
 		9717ABEC1AA9E08400E089D3 /* MovieListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieListViewCell.m; sourceTree = "<group>"; };
+		9717ABEE1AA9E97F00E089D3 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		9772BE671AA99D3000AD9204 /* ALMovieFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALMovieFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9772BE6B1AA99D3000AD9204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9772BE6C1AA99D3000AD9204 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -214,6 +215,7 @@
 				9772BEB61AA9A39000AD9204 /* BaseTableViewController.m */,
 				9772BEBB1AA9A4C000AD9204 /* BaseTableViewCell.h */,
 				9772BEBC1AA9A4C000AD9204 /* BaseTableViewCell.m */,
+				9717ABEE1AA9E97F00E089D3 /* PrefixHeader.pch */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -499,6 +501,8 @@
 			baseConfigurationReference = FEBCF5FC5FEC3086B043E2B3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ALMovieFinder/BaseClass/PrefixHeader.pch";
 				INFOPLIST_FILE = ALMovieFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -510,6 +514,8 @@
 			baseConfigurationReference = 8ABF36E1337B6DF32B828472 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ALMovieFinder/BaseClass/PrefixHeader.pch";
 				INFOPLIST_FILE = ALMovieFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -8,7 +8,7 @@
 
 #import "MovieListViewCell.h"
 #import "MovieObject.h"
-#import <ALUtilities.h>
+#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
 @interface MovieListViewCell ()
 
@@ -26,6 +26,16 @@
     self.titleLabel.text = SafeStr(movieObject.title);
     self.yearLabel.text = SafeStr(movieObject.year);
     self.ratingLabel.text = SafeStr(movieObject.rating);
+    
+    //Image
+    NSString *posterURLString = movieObject.poster.urls.w92;
+    NSURL *url = [NSURL URLWithString:posterURLString];
+    if (url) {
+//        [self.posterImageView setImageWithURL:url usingActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhite)];
+        [self.posterImageView setImageWithURL:url placeholderImage:nil options:(SDWebImageCacheMemoryOnly) usingActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhite)];
+    }else {
+        self.posterImageView.image = nil;
+    }
 }
 
 @end

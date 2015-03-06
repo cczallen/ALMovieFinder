@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 me.zhangxi. All rights reserved.
 //
 #import "MovieObject.h"
-#import <ALUtilities.h>
+
 static NSString * const ALMovieFinderErrorDomain = @"ALMovieFinderErrorDomain";
 
 @interface MovieObject ()
@@ -36,10 +36,12 @@ static NSString * const ALMovieFinderErrorDomain = @"ALMovieFinderErrorDomain";
     BOOL useStub = YES;
     
     if (useStub) {
-        NSArray *movieObjects = [self parseMovieObjects:[self stubResponseObject]];
-        if (success) {
-            success(operation, movieObjects);
-        }
+        dispatchAfter(1.0, ^{
+            NSArray *movieObjects = [self parseMovieObjects:[self stubResponseObject]];
+            if (success) {
+                success(operation, movieObjects);
+            }
+        });
     }else {
         NSArray *paths = @[@"movies", @"search"];
         NSString *URLString = [[MovieObject baseURL] stringByAppendingPathComponent:[paths componentsJoinedByString:@"/"]];
