@@ -21,21 +21,29 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - ALUtilities (1.0.5)
+  - EXPhotoViewer (1.1.2)
   - FrameAccessor (2.0)
+  - HexColors (2.2.1)
   - JDStatusBarNotification (1.5.1)
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
   - SVProgressHUD (HEAD based on 1.1.2)
+  - TSMessages (0.9.12):
+    - HexColors
+  - Tweaks (1.1.0)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - ALUtilities (from `https://github.com/cczallen/ALUtilities.git`)
+  - EXPhotoViewer (~> 1.1)
   - FrameAccessor
   - JDStatusBarNotification
   - SVProgressHUD (HEAD)
+  - TSMessages (~> 0.9)
+  - Tweaks (~> 1.1)
   - UIActivityIndicator-for-SDWebImage (~> 1.2)
 
 EXTERNAL SOURCES:
@@ -50,10 +58,14 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   ALUtilities: ff8ef33da018aedce99b411e17ff9fd78a9c1fcb
+  EXPhotoViewer: 0e9d3e4fbf5918ffeeadc047ed798d54f4a2a6b1
   FrameAccessor: a4cbd52f4ce74d9c3338dd7db9707fb35a71af71
+  HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   JDStatusBarNotification: 46965cc93efa668fa9f1c31cb223df5c84b421d5
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
+  TSMessages: b2b5dc71f65146387e51f2600bb0eb8f3a6c4ab8
+  Tweaks: 05b197d4a1247288f576587546bc1932189d8c98
   UIActivityIndicator-for-SDWebImage: 8bd92c15280fbe54816448c6b14674145eee05c7
 
 COCOAPODS: 0.35.0

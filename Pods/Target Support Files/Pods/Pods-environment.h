@@ -54,11 +54,23 @@
 #define COCOAPODS_VERSION_MINOR_ALUtilities 0
 #define COCOAPODS_VERSION_PATCH_ALUtilities 5
 
+// EXPhotoViewer
+#define COCOAPODS_POD_AVAILABLE_EXPhotoViewer
+#define COCOAPODS_VERSION_MAJOR_EXPhotoViewer 1
+#define COCOAPODS_VERSION_MINOR_EXPhotoViewer 1
+#define COCOAPODS_VERSION_PATCH_EXPhotoViewer 2
+
 // FrameAccessor
 #define COCOAPODS_POD_AVAILABLE_FrameAccessor
 #define COCOAPODS_VERSION_MAJOR_FrameAccessor 2
 #define COCOAPODS_VERSION_MINOR_FrameAccessor 0
 #define COCOAPODS_VERSION_PATCH_FrameAccessor 0
+
+// HexColors
+#define COCOAPODS_POD_AVAILABLE_HexColors
+#define COCOAPODS_VERSION_MAJOR_HexColors 2
+#define COCOAPODS_VERSION_MINOR_HexColors 2
+#define COCOAPODS_VERSION_PATCH_HexColors 1
 
 // JDStatusBarNotification
 #define COCOAPODS_POD_AVAILABLE_JDStatusBarNotification
@@ -83,6 +95,18 @@
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 2
+
+// TSMessages
+#define COCOAPODS_POD_AVAILABLE_TSMessages
+#define COCOAPODS_VERSION_MAJOR_TSMessages 0
+#define COCOAPODS_VERSION_MINOR_TSMessages 9
+#define COCOAPODS_VERSION_PATCH_TSMessages 12
+
+// Tweaks
+#define COCOAPODS_POD_AVAILABLE_Tweaks
+#define COCOAPODS_VERSION_MAJOR_Tweaks 1
+#define COCOAPODS_VERSION_MINOR_Tweaks 1
+#define COCOAPODS_VERSION_PATCH_Tweaks 0
 
 // UIActivityIndicator-for-SDWebImage
 #define COCOAPODS_POD_AVAILABLE_UIActivityIndicator_for_SDWebImage

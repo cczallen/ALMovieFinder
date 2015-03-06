@@ -31,7 +31,6 @@
     NSString *posterURLString = movieObject.poster.urls.w92;
     NSURL *url = [NSURL URLWithString:posterURLString];
     if (url) {
-//        [self.posterImageView setImageWithURL:url usingActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhite)];
         [self.posterImageView setImageWithURL:url placeholderImage:nil options:(SDWebImageCacheMemoryOnly) usingActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhite)];
     }else {
         self.posterImageView.image = nil;
