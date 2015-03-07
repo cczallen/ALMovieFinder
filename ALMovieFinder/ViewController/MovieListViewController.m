@@ -112,6 +112,8 @@ static NSString * const tweakIDForQueryID = @"Query String";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self.tableView reloadData];
+    
     FBTweakStore *store = [FBTweakStore sharedInstance];
     FBTweakCategory *category = [store tweakCategoryWithName:@"Preferences"];
     FBTweakCollection *collection = [category tweakCollectionWithName:@"API"];
