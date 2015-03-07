@@ -29,6 +29,7 @@ static NSString * const tweakIDForQueryID = @"Query String";
 - (UIFont *)getDynamicFontForSearchBar;
 - (void)handleTextSizeChangeNotification;
 - (void)resetFooterView;
+- (FBTweak *)getTweakForQuery;
 
 //IB
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -90,10 +91,7 @@ static NSString * const tweakIDForQueryID = @"Query String";
         }
     }];
     
-    FBTweakStore *store = [FBTweakStore sharedInstance];
-    FBTweakCategory *category = [store tweakCategoryWithName:@"Preferences"];
-    FBTweakCollection *collection = [category tweakCollectionWithName:@"API"];
-    FBTweak *tweak = [collection tweakWithIdentifier:tweakIDForQueryID];
+    FBTweak *tweak = [self getTweakForQuery];
     tweak.currentValue = self.currentSearchText;
 }
 
@@ -112,6 +110,19 @@ static NSString * const tweakIDForQueryID = @"Query String";
     [self reloadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    FBTweakStore *store = [FBTweakStore sharedInstance];
+    FBTweakCategory *category = [store tweakCategoryWithName:@"Preferences"];
+    FBTweakCollection *collection = [category tweakCollectionWithName:@"API"];
+    FBTweak *tweak = [collection tweakWithIdentifier:tweakIDForQueryID];
+    if (![tweak.currentValue isEqualToString:[self.searchBar.text getTrimmedVal]]) {
+        self.searchBar.text = tweak.currentValue;
+        self.currentSearchText = self.searchBar.text;
+        [self reloadData];
+    }
+}
+
 - (void)setupTableView {
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -125,20 +136,13 @@ static NSString * const tweakIDForQueryID = @"Query String";
 }
 
 - (void)setupSearchBar {
-    FBTweak *tweak = [[FBTweak alloc] initWithIdentifier:tweakIDForQueryID];
-    tweak.name = tweakIDForQueryID;
-    tweak.defaultValue = @"hobbit";
-    FBTweakStore *store = [FBTweakStore sharedInstance];
-    FBTweakCategory *category = [store tweakCategoryWithName:@"Preferences"];
-    FBTweakCollection *collection = [category tweakCollectionWithName:@"API"];
-    [collection addTweak:tweak];
-    
     UIFont *dynamicFont = [self getDynamicFontForSearchBar];
     [[UITextField appearanceWhenContainedIn: [UISearchBar class], nil] setFont:dynamicFont];
     if (&UIContentSizeCategoryDidChangeNotification != nil) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTextSizeChangeNotification) name:UIContentSizeCategoryDidChangeNotification object:nil];
     }
     
+    FBTweak *tweak = [self getTweakForQuery];
     NSString *queryString = (tweak.currentValue)? tweak.currentValue : tweak.defaultValue;
     self.searchBar.text = queryString;
     self.currentSearchText = queryString;
@@ -264,12 +268,30 @@ static NSString * const tweakIDForQueryID = @"Query String";
 
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSString *queryString = [searchBar.text getTrimmedVal];
+    searchBar.text = [searchBar.text getTrimmedVal];
+    NSString *queryString = searchBar.text;
     if (queryString) {
         self.currentSearchText = queryString;
         [searchBar endEditing:YES];
         [self reloadData];
     }
+}
+
+
+#pragma mark -
+- (FBTweak *)getTweakForQuery {
+    FBTweakStore *store = [FBTweakStore sharedInstance];
+    FBTweakCategory *category = [store tweakCategoryWithName:@"Preferences"];
+    FBTweakCollection *collection = [category tweakCollectionWithName:@"API"];
+    FBTweak *tweak = [collection tweakWithIdentifier:tweakIDForQueryID];
+    if (!tweak) {
+        tweak = [[FBTweak alloc] initWithIdentifier:tweakIDForQueryID];
+        tweak.name = tweakIDForQueryID;
+        tweak.defaultValue = @"hobbit";
+        [collection addTweak:tweak];
+    }
+    
+    return tweak;
 }
 
 @end
