@@ -26,6 +26,8 @@ static NSString * const tweakIDForQueryID = @"Query String";
 - (void)reloadDataByQueryString:(NSString *)queryString;
 - (void)setupTableView;
 - (void)setupSearchBar;
+- (UIFont *)getDynamicFontForSearchBar;
+- (void)handleTextSizeChangeNotification;
 - (void)resetFooterView;
 
 //IB
@@ -97,6 +99,12 @@ static NSString * const tweakIDForQueryID = @"Query String";
 
 
 #pragma mark - View Cycle
+- (void)dealloc {
+    if (&UIContentSizeCategoryDidChangeNotification != nil) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIContentSizeCategoryDidChangeNotification object:nil];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupSearchBar];
@@ -125,9 +133,34 @@ static NSString * const tweakIDForQueryID = @"Query String";
     FBTweakCollection *collection = [category tweakCollectionWithName:@"API"];
     [collection addTweak:tweak];
     
+    UIFont *dynamicFont = [self getDynamicFontForSearchBar];
+    [[UITextField appearanceWhenContainedIn: [UISearchBar class], nil] setFont:dynamicFont];
+    if (&UIContentSizeCategoryDidChangeNotification != nil) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTextSizeChangeNotification) name:UIContentSizeCategoryDidChangeNotification object:nil];
+    }
+    
     NSString *queryString = (tweak.currentValue)? tweak.currentValue : tweak.defaultValue;
     self.searchBar.text = queryString;
     self.currentSearchText = queryString;
+}
+
+- (UIFont *)getDynamicFontForSearchBar {
+    UIFont *dynamicFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    CGFloat maxSize = self.searchBar.height -4;
+    if (dynamicFont.pointSize > maxSize) {
+        dynamicFont = [UIFont systemFontOfSize:maxSize];
+    }
+    
+    return dynamicFont;
+}
+
+- (void)handleTextSizeChangeNotification {
+    UIFont *dynamicFont = [self getDynamicFontForSearchBar];
+    for (UIView *view in [[self.searchBar.subviews lastObject] subviews]) {
+        if ([view isKindOfClass:[UITextField class]]) {
+            [(UITextField *)view setFont:dynamicFont];
+        }
+    }
 }
 
 

@@ -12,8 +12,17 @@
 
 @implementation MovieListViewCell
 
+- (void)dealloc {
+    if (&UIContentSizeCategoryDidChangeNotification != nil) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIContentSizeCategoryDidChangeNotification object:nil];
+    }
+}
+
 - (void)awakeFromNib {
     self.posterImageView.layer.borderColor = [UIColor colorWithWhite:0.800 alpha:1.000].CGColor;
+    if (&UIContentSizeCategoryDidChangeNotification != nil) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTextSizeChangeNotification) name:UIContentSizeCategoryDidChangeNotification object:nil];
+    }
 }
 
 - (void)configureCellWithMovieObject:(MovieObject *)movieObject {
@@ -58,6 +67,13 @@
             label.attributedText = attributedString;
         }
     }    
+}
+
+- (void)handleTextSizeChangeNotification {
+    UIFont *dynamicFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.titleLabel.font = dynamicFont;
+    self.yearLabel.font = dynamicFont;
+    self.ratingLabel.font = dynamicFont;
 }
 
 @end
