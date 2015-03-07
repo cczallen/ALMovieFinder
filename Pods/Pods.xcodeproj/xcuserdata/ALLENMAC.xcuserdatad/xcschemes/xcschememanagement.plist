@@ -24,27 +24,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-HexColors.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-JDStatusBarNotification.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-SVProgressHUD.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-TSMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,62 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>28C100FBAED9F6BFF02F8E6E</key>
+		<key>224C96F85AC06FECDA93FA0F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>32B83B0F7FD8C55B74D0D4C9</key>
+		<key>28559AB4A2C0D3528EB7085E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4607312D0FCDB10D5C100599</key>
+		<key>28DA998774178F3708B497A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>53EB3E7111CD68E95DF3DDE1</key>
+		<key>52A8B1C1C7742F7138AFD9C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D90021E99017965A9191FAB</key>
+		<key>55C4D9F006C6533DAF2EC081</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8FB988A781821E0CB26ECCE0</key>
+		<key>85BE0E8B9748F01AD3FD7A85</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8FC72C58405973EF945174BC</key>
+		<key>8F78A7C768FDC15C7B426C77</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9BAD62BFDABDC283C7C719FB</key>
+		<key>A85360BB3A10DBE314F5800B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AD37BEE10407690AD3525DBF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C8E227D88A21C8279EEB1E89</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C90109D3120C0086A3738506</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E7697BA0F41CCC37256A6A58</key>
+		<key>DE32AB1C647B57E37916C9BB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

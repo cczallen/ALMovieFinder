@@ -21,7 +21,8 @@
 }
 
 - (void)configureCellWithMovieObject:(MovieObject *)movieObject andSearchText:(NSString *)searchText {
-    self.yearLabel.text = SafeStr(movieObject.year);
+    NSString *year = ([movieObject.year integerValue] < 1880)? @"" : SafeStr(movieObject.year);
+    self.yearLabel.text = year;
     self.ratingLabel.text = SafeStr(movieObject.rating);
     
     //Image
@@ -38,7 +39,7 @@
     
     //Title (Highlight)
     self.titleLabel.text = SafeStr(movieObject.title);
-    BOOL highlight = UITweakValue(@"Highlight", YES);
+    BOOL highlight = UITweakValue(@"Highlight Keyword", YES);
     if (highlight && searchText) {
         UILabel *label = self.titleLabel;
         NSRange range = [label.text rangeOfString:searchText options:(NSCaseInsensitiveSearch)];

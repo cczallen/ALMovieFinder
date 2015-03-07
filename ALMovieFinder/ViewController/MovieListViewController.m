@@ -11,23 +11,28 @@
 #import "MovieListViewCell.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import <EXPhotoViewer.h>
-#import <JDStatusBarNotification/JDStatusBarNotification.h>
 
 static NSString * const tweakIDForQueryID = @"Query String";
 
 @interface MovieListViewController ()
 
-@property (nonatomic, strong) AFHTTPRequestOperation *currentRequestOperation;
+@property (nonatomic, strong) UILabel *tableFooterLabel;
+@property (nonatomic, strong, setter=setCurrentRequestOperation:) AFHTTPRequestOperation *currentRequestOperation;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, weak) MovieObject *currentMovieObject;
 @property (copy, nonatomic) NSString *currentSearchText;
 
+- (void)reloadData;
 - (void)reloadDataByQueryString:(NSString *)queryString;
+- (void)setupTableView;
+- (void)setupSearchBar;
+- (void)resetFooterView;
 
 //IB
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *reloadButton;
 - (IBAction)reloadButtonAction:(id)sender;
+- (IBAction)tryHobbitAction:(id)sender;
 
 @end
 
@@ -36,6 +41,52 @@ static NSString * const tweakIDForQueryID = @"Query String";
 //override
 - (void)reloadData {
     [self reloadDataByQueryString:self.currentSearchText];
+}
+
+- (void)reloadDataByQueryString:(NSString *)queryString {
+    void(^removeOperation)() = ^() {
+        self.currentRequestOperation = nil;
+    };
+    void(^clear)() = ^() {
+        self.movies = nil;
+        self.currentMovieObject = nil;
+        [self.tableView reloadData];
+    };
+    
+    if (self.currentRequestOperation) {
+        [self.currentRequestOperation cancel];
+    }
+    
+    [SVProgressHUD showWithStatus:@"Loading..."];
+    self.currentRequestOperation =
+    [MovieObject fetchMoviesByQueryString:queryString success:^(AFHTTPRequestOperation *operation, NSArray *movieObjects) {
+        //Clear
+        clear();
+        //Set
+        dispatchAfter(0.5, ^{
+            self.movies = movieObjects;
+            [self.tableView reloadDataWithRowAnimation:(UITableViewRowAnimationFade)];
+            [SVProgressHUD dismiss];
+            removeOperation();
+        });
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (operation.isCancelled) {
+            return;
+        }
+        NSString *message;
+        if (operation.response.statusCode == 404) { //Resource not found
+            message = operation.responseObject[@"error"][@"message"];
+            [SVProgressHUD showInfoWithStatus:message];
+            removeOperation();
+            dispatchAfter(1.2, ^{
+                clear();
+            });
+        }else {
+            message = error.localizedDescription;
+            [SVProgressHUD showErrorWithStatus:message];
+            removeOperation();
+        }
+    }];
     
     FBTweakStore *store = [FBTweakStore sharedInstance];
     FBTweakCategory *category = [store tweakCategoryWithName:@"Preferences"];
@@ -44,45 +95,25 @@ static NSString * const tweakIDForQueryID = @"Query String";
     tweak.currentValue = self.currentSearchText;
 }
 
-- (void)reloadDataByQueryString:(NSString *)queryString {
-    void(^finalBlock)() = ^() {
-        self.currentRequestOperation = nil;
-        [SVProgressHUD dismiss];
-    };
-    
-    [SVProgressHUD showWithStatus:@"Loading..."];
-    self.currentRequestOperation =
-    [MovieObject fetchMoviesByQueryString:queryString success:^(AFHTTPRequestOperation *operation, NSArray *movieObjects) {
-        //Clear
-        self.movies = nil;
-        self.currentMovieObject = nil;
-        [self.tableView reloadData];
-        //Set
-        dispatchAfter(0.5, ^{
-            self.movies = movieObjects;
-            [self.tableView reloadDataWithRowAnimation:(UITableViewRowAnimationFade)];
-            // TODO: Empty Page?
-            finalBlock();
-        });
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-        finalBlock();
-    }];
-}
-
 
 #pragma mark - View Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupTableView];
     [self setupSearchBar];
+    [self setupTableView];
     [self reloadData];
 }
 
 - (void)setupTableView {
-    self.tableView.contentInsetTop = 8;
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableFooterLabel = [[UILabel alloc] init];
+    self.tableFooterLabel.backgroundColor = [UIColor colorWithRed:0.987 green:1.000 blue:0.948 alpha:1.000];
+    self.tableFooterLabel.height = 44;
+    self.tableFooterLabel.textAlignment = NSTextAlignmentCenter;
+    self.tableFooterLabel.textColor = [UIColor grayColor];
+    self.tableFooterLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.tableView.tableFooterView = self.tableFooterLabel;
 }
 
 - (void)setupSearchBar {
@@ -111,21 +142,54 @@ static NSString * const tweakIDForQueryID = @"Query String";
 
 #pragma mark - UITableView DataSource & Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.movies.count;
+    NSInteger number = self.movies.count;
+    [self resetFooterView];
+    if (number == 0 && self.currentRequestOperation == nil) {
+        number = 1;
+    }
+    
+    return number;
+}
+
+- (void)resetFooterView {
+    NSInteger number = self.movies.count;
+    self.tableFooterLabel.text = [NSString stringWithFormat:@"%li items", number];
+    self.tableFooterLabel.hidden = (number == 0);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    CGFloat height = 4;
+    return height;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor clearColor];
+    return headerView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MovieListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MovieListViewCell cellReuseIdentifier]];
-    
-    NSInteger myRow = indexPath.row;
-    MovieObject *movieObject = self.movies[myRow];
-    [cell configureCellWithMovieObject:movieObject andSearchText:self.currentSearchText];
-    
+    UITableViewCell *cell;
+    if (self.movies.count) {
+        cell = [tableView dequeueReusableCellWithIdentifier:[MovieListViewCell cellReuseIdentifier]];
+        
+        NSInteger myRow = indexPath.row;
+        MovieObject *movieObject = self.movies[myRow];
+        [(MovieListViewCell *)cell configureCellWithMovieObject:movieObject andSearchText:self.currentSearchText];
+        
+    }else {
+        static NSString * const emptyCellID = @"EmptyCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:emptyCellID];
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (!self.movies.count) {
+        [self tryHobbitAction:nil];
+        return;
+    }
     
     MovieListViewCell *cell = (MovieListViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
@@ -148,19 +212,26 @@ static NSString * const tweakIDForQueryID = @"Query String";
             } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         }];
     }
-
 }
 
 
 #pragma mark - Actions
 - (IBAction)reloadButtonAction:(id)sender {
     [self reloadData];
+    [self.searchBar endEditing:YES];
+}
+
+- (IBAction)tryHobbitAction:(id)sender {
+    NSString *queryString = @"hobbit";
+    self.searchBar.text = queryString;
+    self.currentSearchText = queryString;
+    [self reloadData];
 }
 
 
-#pragma mark - <UISearchBarDelegate>
+#pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSString *queryString = searchBar.text;
+    NSString *queryString = [searchBar.text getTrimmedVal];
     if (queryString) {
         self.currentSearchText = queryString;
         [searchBar endEditing:YES];

@@ -66,18 +66,6 @@
 #define COCOAPODS_VERSION_MINOR_FrameAccessor 0
 #define COCOAPODS_VERSION_PATCH_FrameAccessor 0
 
-// HexColors
-#define COCOAPODS_POD_AVAILABLE_HexColors
-#define COCOAPODS_VERSION_MAJOR_HexColors 2
-#define COCOAPODS_VERSION_MINOR_HexColors 2
-#define COCOAPODS_VERSION_PATCH_HexColors 1
-
-// JDStatusBarNotification
-#define COCOAPODS_POD_AVAILABLE_JDStatusBarNotification
-#define COCOAPODS_VERSION_MAJOR_JDStatusBarNotification 1
-#define COCOAPODS_VERSION_MINOR_JDStatusBarNotification 5
-#define COCOAPODS_VERSION_PATCH_JDStatusBarNotification 1
-
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3
@@ -95,12 +83,6 @@
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 2
-
-// TSMessages
-#define COCOAPODS_POD_AVAILABLE_TSMessages
-#define COCOAPODS_VERSION_MAJOR_TSMessages 0
-#define COCOAPODS_VERSION_MINOR_TSMessages 9
-#define COCOAPODS_VERSION_PATCH_TSMessages 12
 
 // Tweaks
 #define COCOAPODS_POD_AVAILABLE_Tweaks

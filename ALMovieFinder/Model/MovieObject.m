@@ -46,6 +46,7 @@ static NSString * const ALMovieFinderErrorDomain = @"ALMovieFinderErrorDomain";
         NSString *URLString = [[MovieObject baseURL] stringByAppendingPathComponent:path];
         id parameters = @{@"q": SafeStr(queryString)};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        operation = 
         [manager GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"JSON: %@", responseObject);
             NSArray *movieObjects = [self parseMovieObjects:responseObject];

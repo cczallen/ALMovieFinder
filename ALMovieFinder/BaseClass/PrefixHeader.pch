@@ -15,7 +15,6 @@
 #import <ALUtilities.h>
 #import <SVProgressHUD.h>
 #import <FrameAccessor.h>
-#import <TSMessage.h>
 #import <FBTweak.h>
 #import <Tweaks/FBTweakInline.h>
 #define DebugTweakValue(name_, ...) FBTweakValue(@"Preferences", @"Debug", name_, __VA_ARGS__)
