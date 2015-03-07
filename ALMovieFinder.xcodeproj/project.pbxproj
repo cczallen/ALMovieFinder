@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6053424A136A17400E6999B0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B8EE264CB35DD5D8E4A2E0 /* libPods.a */; };
 		9717ABED1AA9E08400E089D3 /* MovieListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9717ABEC1AA9E08400E089D3 /* MovieListViewCell.m */; };
+		9717ABF61AAAF2D100E089D3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9717ABF51AAAF2D100E089D3 /* Images.xcassets */; };
 		9772BE6D1AA99D3000AD9204 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BE6C1AA99D3000AD9204 /* main.m */; };
 		9772BE701AA99D3000AD9204 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9772BE6F1AA99D3000AD9204 /* AppDelegate.m */; };
 		9772BE791AA99D3000AD9204 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9772BE771AA99D3000AD9204 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		9717ABEB1AA9E08400E089D3 /* MovieListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieListViewCell.h; sourceTree = "<group>"; };
 		9717ABEC1AA9E08400E089D3 /* MovieListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieListViewCell.m; sourceTree = "<group>"; };
 		9717ABEE1AA9E97F00E089D3 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		9717ABF51AAAF2D100E089D3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9772BE671AA99D3000AD9204 /* ALMovieFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALMovieFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9772BE6B1AA99D3000AD9204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9772BE6C1AA99D3000AD9204 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				9772BEB31AA9A2CF00AD9204 /* BaseClass */,
 				9772BE9A1AA99DB300AD9204 /* Model */,
 				9772BE931AA99DAE00AD9204 /* ViewController */,
+				9717ABF51AAAF2D100E089D3 /* Images.xcassets */,
 				9772BE6A1AA99D3000AD9204 /* Supporting Files */,
 			);
 			path = ALMovieFinder;
@@ -308,6 +311,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9717ABF61AAAF2D100E089D3 /* Images.xcassets in Resources */,
 				9772BE791AA99D3000AD9204 /* Main.storyboard in Resources */,
 				9772BE7E1AA99D3000AD9204 /* LaunchScreen.xib in Resources */,
 			);
@@ -497,6 +501,7 @@
 			baseConfigurationReference = FEBCF5FC5FEC3086B043E2B3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ALMovieFinder/BaseClass/PrefixHeader.pch";
 				INFOPLIST_FILE = ALMovieFinder/Info.plist;
@@ -510,6 +515,7 @@
 			baseConfigurationReference = 8ABF36E1337B6DF32B828472 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ALMovieFinder/BaseClass/PrefixHeader.pch";
 				INFOPLIST_FILE = ALMovieFinder/Info.plist;
